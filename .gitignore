@@ -1,0 +1,10 @@
+<<<<<<< HEAD
+bin/
+Debug/
+.vs/
+.vscode/
+obj/
+*.user
+Properties/
+=======
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd

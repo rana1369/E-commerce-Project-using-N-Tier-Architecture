@@ -1,0 +1,101 @@
+﻿@model List<Customer_Oreders_ProductsVM>
+@{
+    ViewData["Title"] = "Index";
+    var cusid = 1;
+}
+
+
+
+<h1>Cart</h1>
+
+<form method="post" class="bg-secondary-subtle">
+    <div class="row my-5" style="margin-top:3rem">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="col-md-6">
+                <div class="card w-100 border-dark m-2">
+                     <div class="card-body">
+                
+                    
+                             <img src="~/image/@Model[i].Products.Image" class="card-img-top round-3" style="width: 100% ;height:20rem">
+                   
+                             <h5 class="card-title d-inline-block text-secondary" style="margin-top:1rem">@Model[i].Products.name</h5>
+                              <p class="card-text pricee fw-bold" style="margin-right:2rem">@Model[i].Products.price $</p>
+                              <select class='some_selector quantity' asp-for="@Model[i].quantity" onchange="calcTotal(@i)"></select>
+              
+                        <input asp-for="@Model[i].ProductsId" style="display:none">
+                        <input asp-for="@Model[i].Products.name" style="display:none">
+                        <input asp-for="@Model[i].Products.id" style="display:none">
+                        <input class="price" asp-for="@Model[i].Products.price" style="visibility:hidden">
+                        <input asp-for="@Model[i].Products.SupplierId" style="visibility:hidden">
+
+                        <h3 style="display:none">total</h3> <h4 style="display:none" class="total">@Model[i].Products.price</h4>
+
+                            <div class="d-flex justify-content-end">
+                                <a class="btn btn-dark ml-5" href="/Customer_Oreders_Products/Delete/@Model[i].ProductsId" id="@Model[i].ProductsId" onclick="return confirm('Are you sure you want to delete this?')">Delete</a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="d-flex justify-content-end" style="margin-top:2rem">
+        <h5 id="totalo"></h5>
+        @if ((int)cusid == 0)
+        {
+            <input type="submit" class="btn btn-dark" style="margin-left:2rem" value="CHECKOUT (@Model.Count)" onclick="return confirm('Sign Up or Sign In First, Please')" />
+
+        }
+        else
+        {
+            <input id="amount" type="submit" class="btn btn-dark" style="margin-left:2rem" value="CHECKOUT (@Model.Count)" />
+        }
+
+
+    </div>
+</form>
+
+<script src="/lib/jquery/dist/jquery.min.js"></script>
+<script src="/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+
+<script>
+    var select = '';
+    for (i = 1; i <= 100; i++) {
+        select += '<option val=' + i + '>' + i + '</option>';
+    }
+    $('.some_selector').html(select);
+
+    calcOrderTptal();
+
+    function calcTotal(i) {
+        //var quantity = document.getElementsByClassName("quantity")[i].value;
+        var quantity = document.getElementsByTagName("select")[i].value;
+        var price = document.getElementsByClassName("price")[i].value
+        document.getElementsByClassName("total")[i].innerHTML = "";
+        var result = Number(quantity) * Number(price);
+        console.log("q " + quantity + " p" + price)
+        console.log(result)
+        document.getElementsByClassName("total")[i].innerHTML = result;
+        calcOrderTptal();
+        numItem();
+    }
+    function calcOrderTptal() {
+        var arrtotal = document.getElementsByClassName("total");
+        const arr = Array.from(arrtotal);
+        var priceTotal = 0;
+        arr.forEach(element => {
+            priceTotal += Number(element.innerHTML);
+        });
+        document.getElementById("totalo").innerHTML = priceTotal + ' $';
+    }
+    function numItem() {
+        var element = document.getElementsByTagName("select");
+        var arr = Array.from(element);
+        var amount = 0;
+        arr.forEach(element => {
+            amount += Number(element.value);
+        });
+        document.getElementById("amount").value = `CHECKOUT (${amount})`;
+    }
+</script>
+

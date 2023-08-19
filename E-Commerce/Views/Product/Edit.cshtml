@@ -1,0 +1,72 @@
+﻿@using E_Commerce.BLL.EntityVM;
+@model ProductsVM
+@{
+    ViewData["Title"] = "Edit";
+    var id = (int)ViewData["Supplie"];
+}
+
+<h1>Edit</h1>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="m-2">
+        <label asp-for="name" class="py-2">Product Name</label>
+        <input class="form-control" asp-for="name" />
+
+
+        <div class="m-auto text-center">
+            <span asp-validation-for="name" class="text-danger shadow-sm "></span>
+        </div>
+    </div>
+
+    <div class="m-2">
+        <label asp-for="price" class="py-2">
+            Product Price
+        </label>
+        <input class="form-control" type="number" asp-for="price" />
+        <div class="m-auto text-center">
+            <span asp-validation-for="price" class="text-danger shadow-sm"></span>
+        </div>
+    </div>
+
+
+    <div class="m-2">
+        <label asp-for="descreption" class="py-2">
+            Product Descreption
+        </label>
+        <input class="form-control" asp-for="descreption" />
+        <div class="m-auto text-center">
+            <span asp-validation-for="descreption" class="text-danger shadow-sm "></span>
+        </div>
+    </div>
+
+
+
+    <div class="m-2">
+        <input hidden asp-for="SupplierId" value="@id" />
+    </div>
+
+    <div>
+        <label asp-for="Image">
+            Image
+        </label>
+        <input type="file" class="form-control" asp-for="Image" value="@Model.Image"/>
+
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+
+    <div class="d-flex justify-content-center align-content-center  my-3">
+        <input type="submit" class="btn-success my-5 border shadow-5 px-5 py-3 rounded-3" value="Save" />
+    </div>
+
+
+</form>
+
+<a asp-action="Index" class="btn btn-info ">Back to list</a>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+

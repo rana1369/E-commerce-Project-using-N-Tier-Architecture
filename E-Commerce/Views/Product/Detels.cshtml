@@ -1,0 +1,48 @@
+<<<<<<< HEAD
+﻿@using E_Commerce.BLL.EntityVM;
+=======
+﻿
+@using E_Commerce.BLL.EntityVM;
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd
+@model ProductsVM
+@{
+    ViewData["Title"] = "Detels";
+}
+
+<<<<<<< HEAD
+
+
+<div style="width: 10% ;margin:auto"><h1>Details</h1></div>
+
+
+<div class="card" style="width: 50% ;margin:auto">
+    <img src="~/image/@Model.Image" class="card-img-top round-3" style="width: 100% ;height:30rem">
+    <div class="card-body p-2" style="padding:30px">
+        <h5 class="card-title">@Model.name</h5>
+        <p class="card-text">@Model.price $</p>
+        <p class="card-text">@Model.descreption</p>
+        <a asp-action="Index" type="button" class="btn btn-dark btn-outline-info mx-4">Back To List</a>
+        <a asp-route-id="@Model.id" asp-action="saveId" asp-controller="Product" type="button" class="btn btn-warning"> BUY </a>
+    </div>
+</div>
+=======
+<h1>Detels</h1>
+<div class="card" style="width:500px">
+@*    <img class="card-img-top" src="~/images/@Model.Image" alt="Card image">*@
+<div class="card-img-overlay">
+    <h4 class="card-title">@Model.id</h4>
+    <p class="card-text">@Model.price</p>
+    <p class="card-text">@Model.descreption</p>
+    <p class="card-text">@Model.Supplier</p>
+    <a>
+
+    </a>
+</div>
+
+
+</div>
+<div>
+    <a asp-action="Index" type="button" class="btn btn-warning btn-lg m-5">Back</a>
+</div>
+
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd

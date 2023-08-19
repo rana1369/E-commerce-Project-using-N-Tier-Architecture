@@ -1,0 +1,136 @@
+﻿@using E_Commerce.BLL.EntityVM;
+@model ProductsVM
+@{
+    ViewData["Title"] = "Add";
+<<<<<<< HEAD
+    var id = (int)ViewData["Supplie"];
+=======
+    SelectList Supplierlist = new SelectList(ViewBag.Supplie, "id", "name");
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd
+}
+
+<h1>Add</h1>
+
+<<<<<<< HEAD
+<form method="post" enctype="multipart/form-data">
+=======
+<form method="post">
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd
+    <div class="m-2">
+        <label asp-for="name" class="py-2">Product Name</label>
+        <input class="form-control" asp-for="name" />
+        <div class="m-auto text-center">
+            <span asp-validation-for="name" class="text-danger shadow-sm "></span>
+        </div>
+    </div>
+<<<<<<< HEAD
+
+=======
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd
+    <div class="m-2">
+        <label asp-for="price" class="py-2">
+            Product Price
+        </label>
+        <input class="form-control" type="number" asp-for="price" />
+        <div class="m-auto text-center">
+            <span asp-validation-for="price" class="text-danger shadow-sm"></span>
+<<<<<<< HEAD
+        </div>
+=======
+            </div>
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd
+    </div>
+
+
+    <div class="m-2">
+        <label asp-for="descreption" class="py-2">
+            Product Descreption
+        </label>
+        <input class="form-control" asp-for="descreption" />
+        <div class="m-auto text-center">
+<<<<<<< HEAD
+            <span asp-validation-for="descreption" class="text-danger shadow-sm "></span>
+        </div>
+    </div>
+
+
+    <div class="m-2">
+        <input hidden asp-for="SupplierId" value="@id" />
+    </div>
+
+    <div>
+        <label asp-for="Image">
+            Image
+        </label>
+        <input type="file" class="form-control" asp-for="Image" />
+
+        <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+
+
+
+    <div style="margin-top:2rem">
+        <input type="submit" class="btn btn-primary my-5 border shadow-5 px-5 py-3 rounded-3" value="Create Product" />
+        <a asp-action="ViewProductSupp" type="button" class="btn btn-info " style="margin-left:2rem">Back to list</a>
+=======
+        <span asp-validation-for="descreption" class="text-danger shadow-sm "></span>
+        </div>
+    </div>
+    @*
+    <div>
+    <label asp-for="SupplierId" class="py-3">
+    Supplier Number
+    </label>
+    <input class="form-control" type="number" asp-for="SupplierId" />
+    <span asp-validation-for="SupplierId" class="text-danger"></span>
+    </div>*@
+
+    <div class="m-2">
+        <label asp-for="SupplierId" class="py-2">
+            Supplier Number
+        </label>
+        <select asp-for="SupplierId" asp-items="Supplierlist" class="form-control">
+
+            <option value="0"> Select Departmrnt </option>
+        </select>
+    </div>
+    @*   <div>
+    <label asp-for="Image">
+    Image
+    </label>
+    <input class="form-control" asp-for="Image" />
+    <span asp-validation-for="Image" class="text-danger"></span>
+    </div>
+
+    *@
+
+   
+    <div class ="d-flex justify-content-center align-content-center  my-3">
+        <input type="submit" class="btn-success my-5 border shadow-5 px-5 py-3 rounded-3" value="Create Product" />
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd
+    </div>
+
+
+</form>
+
+<<<<<<< HEAD
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+@*@section Scripts{
+    
+
+}*@
+=======
+<a asp-action="Index" class="btn btn-info ">Back to list</a>
+
+
+@section Scripts{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}
+>>>>>>> d403ac127da79efd0db40c8947847da2b92e29dd

@@ -1,0 +1,168 @@
+﻿@using E_Commerce.BLL.EntityVM
+@model List<ProductsVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@section BootstrapSelect{
+    <link href="~/Layout/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="~/Layout/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+<h1 class="d-flex justify-content-center text-success">Products</h1>
+<div class="row justify-content-center align-items-center mt-5">
+</div>
+<div class="container my-4">
+    
+
+        
+
+        <div class="m-2" style="margin-bottom:3rem">
+
+        <a class="btn  btn-outline-success m-auto w-75 p-2" style="margin:2rem ; padding:1rem" asp-action="Add">Add New Product</a>
+        </div>
+
+    
+@*
+    <form asp-action="Index" class="row d-flex justify-content-center align-content-center ">
+
+        <div class="col-md-5  m-auto my-3">
+            <input type="text" class="form-control " onchange="KeyboardEvent" name="SearchValue" placeholder="Search By Name........" />
+        </div>
+
+        <div class="col-md-5 w-50  m-auto ">
+            <input type="submit" class="btn btn-success w-50 text-center" style="margin:auto;margin-left:2rem" value="Search" />
+        </div>
+    </form>
+*@
+
+
+    <div class="container-fluid">
+        <div class="row clearfix">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="header">
+                        <h2>Users</h2>
+                        <ul class="header-dropdown m-r--5">
+                            <li class="dropdown">
+                                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <i class="material-icons">more_vert</i>
+                                </a>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="javascript:void(0);">Action</a></li>
+                                    <li><a href="javascript:void(0);">Another action</a></li>
+                                    <li><a href="javascript:void(0);">Something else here</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped table-hover js-basic-example dataTable text-center font-weight-bold">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Price</th>
+                                        <th>Descreption</th>
+                                        <th>Image</th>
+                                        <th>Details</th>
+                                        <th>Update</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.id</td>
+                                            <td>@item.name</td>
+                                            <td>@item.price</td>
+                                            <td>@item.descreption</td>
+                                            <td><img src="~/image/@item.Image" style="width: 4rem% ;height:4rem" /></td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="Detels" asp-route-id="@item.id" type="button" class="btn btn-primary btn">
+                                                    <i class="fas fa-eye"></i> Details
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@item.id" type="button" class="btn btn-success btn">
+                                                    <i class="fas fa-edit"></i> Update
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a onclick="return confirm('Are you sure you want to delete this product?')" asp-controller="Product" asp-action="Delete" asp-route-id="@item.id" class="btn btn-danger">
+                                                    <i class="fas fa-trash"></i> Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    @section DataTableScripts{
+
+        <script src="~/Layout/plugins/jquery-datatable/jquery.dataTables.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+
+
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+        <script src="~/Layout/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
+
+
+        <script>
+            $(function () {
+                $('.js-basic-example').DataTable({
+                    responsive: true,
+                    paging: true,
+                    pageLength: 5,
+                    bSort: true,
+                    bFilter: true,
+                    bLengthChange: false,
+                    //bInfo: false,
+                    lengthMenu: [[3, 5, 10, 25, 50, -1], [3, 5, 10, 25, 50, "All"]],
+
+                });
+
+
+
+                var table = $('.js-basic-example').DataTable();
+
+                new $.fn.dataTable.Buttons(table, {
+                    buttons: [
+                        'copy', 'excel', 'pdf', 'csv', 'print'
+                    ]
+                });
+
+                table.buttons().container()
+                    .appendTo($('.col-sm-6:eq(0)', table.table().container()));
+
+
+            });
+
+        </script>
+    }
+
+

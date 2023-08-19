@@ -1,0 +1,30 @@
+
+@model Customer
+
+@{
+    ViewData["Title"] = "GetById";
+}
+
+<div class="card" style="width: 25rem;">
+    <div class="card-body">
+        <h5 class="card-title">Name: @Model.name</h5>
+     <p class="card-text">Customer Id: @Model.id</p>
+        <p class="card-text">@Model.email</p>
+        <p class="card-text">@Model.phone</p>
+        <p class="card-text">@Model.address</p>
+        <h4 class="card-title">Orders</h4>
+     @foreach (var order in Model.Oreders)
+     {
+        <hr>
+        <tr>  
+            <p>date_order_paid : @order.date_order_paid</p>
+            <p>date_order_placed : @order.date_order_placed</p>
+            <p>Order Id : @order.id</p>
+            <p>Order Price : @order.price $</p>
+        </tr>
+        <hr>
+     }
+        <a href="./index" class="btn btn-primary">Go to Products</a>
+    </div>
+</div>
+
